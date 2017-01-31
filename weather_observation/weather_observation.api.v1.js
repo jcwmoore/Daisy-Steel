@@ -6,12 +6,16 @@ module.exports = {
     /**
      * @param {any} body the body from the http request
      */
-    posts: function (body){
+    post: function (body){
         return new promise(function(resolve, reject) {
             if(body == null){
                 reject('null input');
             }
-            model.create({ timeStamp: body.ts, temperature: body.temperature, humidity: body.humidity }).then(function(){
+            if(Array.isArray(body)) {
+                reject('api operation only accepts a single input')
+            }
+            model.create({ timeStamp: body.ts, temperature: body.temperature, humidity: body.humidity })
+              .then(function(){
                 resolve();
             }).catch(function(err){
                 reject(err);
