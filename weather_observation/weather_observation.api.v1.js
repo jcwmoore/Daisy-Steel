@@ -1,4 +1,3 @@
-var promise = require('bluebird');
 var model = require('./weather_observation.model');
 
 module.exports = {
@@ -7,7 +6,8 @@ module.exports = {
      * @param {any} body the body from the http request
      */
     post: function (body){
-        return new promise(function(resolve, reject) {
+        
+        return new Promise(function(resolve, reject) {
             if(body == null){
                 reject('null input');
             }

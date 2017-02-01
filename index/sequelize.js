@@ -1,2 +1,4 @@
 var sequelize = require('sequelize');
-module.exports = new sequelize('daisy.db3', null, null, { dialect: 'sqlite', storage: '', logging: false });
+var config = require('../.config');
+
+module.exports = new sequelize(config.db.name, config.db.username, config.db.password, config.db.options);
