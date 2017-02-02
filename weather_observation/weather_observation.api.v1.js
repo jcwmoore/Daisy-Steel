@@ -1,4 +1,4 @@
-var model = require('./weather_observation.model');
+const model = require('./weather_observation.model');
 
 module.exports = {
 

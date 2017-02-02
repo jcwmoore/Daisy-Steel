@@ -8,8 +8,8 @@ var isTravis = process.env.TRAVIS || false;
 */
 gulp.task('run-tests', function () {
     process.env.NODE_ENV = 'test';
-return gulp.src(['**/*.spec.js', '!node_modules/**/*.spec.js'], { read: false })
-.pipe(mocha({ reporter: 'spec' }));
+    return gulp.src(['**/*.spec.js', '!node_modules/**/*.spec.js'], { read: false })
+        .pipe(mocha({ reporter: 'spec' }));
 });
 
 gulp.task('default', ['run-tests']);
