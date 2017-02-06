@@ -35,4 +35,18 @@ describe('weather_observation.api.v1', function() {
             done(err); 
         });          
     });
+    it('valid get', function(done){
+        db.sync({force: true})
+          .then(r1 => model.create({ timeStamp: new Date('2017-01-29T23:14:43'), temperature: 1, humidity: 2 }))
+          .then(r2 => obs.get({}))
+          .then(r3 => {
+              r3.length.should.equal(1, 'nothing was returned');
+              r3[0].timeStamp.should.eql(new Date('2017-01-29T23:14:43'));
+              r3[0].temperature.should.equal(1);
+              r3[0].humidity.should.equal(2);
+              done();
+          }).catch(err => { 
+            done(err); 
+        }); 
+    });
 });

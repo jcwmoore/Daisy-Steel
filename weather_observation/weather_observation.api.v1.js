@@ -3,6 +3,16 @@ const model = require('./weather_observation.model');
 module.exports = {
 
     /**
+     * @param {any} body the body from the http request 
+     */
+    get: function(body){
+        return new Promise((resolve, reject) => {
+            model.all()
+                .then(r1 => { resolve(r1) })
+                .catch(err => { reject(err) });
+        });
+    },
+    /**
      * @param {any} body the body from the http request
      */
     post: function (body){
