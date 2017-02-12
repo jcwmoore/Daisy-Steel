@@ -2,11 +2,11 @@
 
 const mocha = require('mocha');
 const should = require('should');
-const obs = require('./weather_observation.api.v1');
-const model = require('./weather_observation.model');
+const obs = require('./weather.api.v1');
+const model = require('./weather.model');
 const db = require('../index/sequelize');
 
-describe('weather_observation.api.v1', function() {
+describe('weather.api.v1', function() {
     it('null post', function(done){
         obs.post(null)
           .then( function() {
@@ -26,7 +26,7 @@ describe('weather_observation.api.v1', function() {
     it('valid post', function(done){
         
         db.sync({force: true})
-          .then(r1 => obs.post( { ts: '2017-01-29T23:14:43' } ))
+          .then(r1 => obs.post( { ts: '2017-01-29T23:14:43', location: 'test' } ))
           .then(r2 => model.findAll({ where: { timeStamp: new Date('2017-01-29T23:14:43') }} )
          ).then(r3 => {
             r3.length.should.equal(1, 'there should only be one record in the database.');
@@ -37,7 +37,7 @@ describe('weather_observation.api.v1', function() {
     });
     it('valid get', function(done){
         db.sync({force: true})
-          .then(r1 => model.create({ timeStamp: new Date('2017-01-29T23:14:43'), temperature: 1, humidity: 2 }))
+          .then(r1 => model.create({ timeStamp: new Date('2017-01-29T23:14:43'), location: 'test', temperature: 1, humidity: 2 }))
           .then(r2 => obs.get({}))
           .then(r3 => {
               r3.length.should.equal(1, 'nothing was returned');

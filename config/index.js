@@ -10,10 +10,10 @@ var config = module.exports = {
      * Database configuration
      */
     db: {
-        name: 'Daisy',
+        name: 'daisy',
         username: null,
         password: null,
-        options: { dialect: 'sqlite', storage: '', logging: true }
+        options: { dialect: 'sqlite', storage: 'daisy.db3', logging: false }
     }
 };
 try{

@@ -18,16 +18,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '.public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-var index = require('./index/route');
-var users = require('./users/route');
-
-app.use('/', index);
-app.use('/users', users);
-app.use('/weather', require('./weather_observation/route'));
-app.use('/api/weather', require('./weather_observation/route.api'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,13 +39,22 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.db = {
-  sequelize: require("./index/sequelize"),
+global.config = require('./config');
+global.db = {
+  sequelize: require("./app/index/sequelize"),
   models: {
-    weather_observation: require('./weather_observation/weather_observation.model')
+    weather: require('./app/weather/weather.model')
   }
 };
 
-app.db.sequelize.sync();
+global.db.sequelize.sync();
+
+var index = require('./app/index/route');
+var users = require('./app/users/route');
+
+app.use('/', index);
+app.use('/users', users);
+app.use('/weather', require('./app/weather/route'));
+app.use('/api/weather', require('./app/weather/route.api'));
 
 module.exports = app;

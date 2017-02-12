@@ -1,4 +1,4 @@
-const model = require('./weather_observation.model');
+const model = require('./weather.model');
 
 module.exports = {
 
@@ -24,7 +24,7 @@ module.exports = {
             if(Array.isArray(body)) {
                 reject('api operation only accepts a single input')
             }
-            model.create({ timeStamp: body.ts, temperature: body.temperature, humidity: body.humidity })
+            model.create({ timeStamp: body.ts, location: body.location, temperature: body.temperature, humidity: body.humidity })
               .then(function(){
                 resolve();
             }).catch(function(err){

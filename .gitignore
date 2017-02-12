@@ -1,4 +1,4 @@
 node_modules/
 typings/
 *.db3
-.config/config.*.js
+config/config.*.js

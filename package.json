@@ -17,7 +17,8 @@
     "serve-favicon": "~2.3.0",
     "passport": "*",
     "passport-local": "*",
-    "sequelize": "~3.27.0"
+    "sequelize": "~3.27.0",
+    "sequelize-mysql": "~1.7.0"
   },
   "devDependencies": {
     "browser-sync": "*",
