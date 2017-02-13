@@ -28,8 +28,6 @@ global.db = {
   }
 };
 
-global.db.sequelize.sync();
-
 app.use('/', require('./app/index/route'));
 app.use('/users', require('./app/users/route'));
 app.use('/weather', require('./app/weather/route'));
