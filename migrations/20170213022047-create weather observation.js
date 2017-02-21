@@ -7,6 +7,8 @@ module.exports = {
       timeStamp: { type: sequelize.DATE, allowNull: false, field: 'TimeStamp' },
       temperature: { type: sequelize.FLOAT, allowNull: true, field: 'Temperature' },
       humidity: { type: sequelize.FLOAT, allowNull: true, field: 'Humidity' },
+      createdAt: { type: sequelize.DATE },
+      updatedAt: { type: sequelize.DATE },
     });
   },
 
